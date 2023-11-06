@@ -71,7 +71,7 @@ const Footer = () => {
         </div>
         <div className='w-full bg-gray-600 px-4 py-6 sm:flex sm:items-center sm:justify-between'>
           <Link to='/' className='text-gray-300' title='Flowbite™'>
-            &copy; 2022 Flowbite™
+            &copy; 2022 Kola™
           </Link>
           <div className='mt-4 flex space-x-6 sm:mt-0 sm:justify-center'>
             <Link
