@@ -17,7 +17,7 @@ const ErrorPage = () => {
       </figure>
       <Link
         to={'/'}
-        className='px-12 py-2 bg-slate-500 rounded text-2xl font-bold'
+        className='px-12 py-2 bg-lime-500 rounded text-2xl font-bold'
       >
         <FcHome className='text-6xl' />
       </Link>
