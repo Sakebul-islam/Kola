@@ -2,13 +2,16 @@
 
 import { Button, Card, Label, TextInput } from 'flowbite-react';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-import {FcGoogle} from 'react-icons/fc'
+import { FcGoogle } from 'react-icons/fc';
 import { FaGithub } from 'react-icons/fa';
+import useAuth from '../hooks/useAuth';
 
 const SignIn = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
+  const { signIn, signInWithGoogle, signInWithGithub } = useAuth();
+  const navigate = useNavigate();
 
   const handleSignIn = (e) => {
     e.preventDefault();
@@ -27,9 +30,35 @@ const SignIn = () => {
         password,
       }));
     }
+    signIn(email, password)
+      .then((res) => console.log(res))
+      .catch((error) => {
+        console.log(error);
+      });
+    navigate('/');
   };
 
-  console.log(formData);
+  const handleWithProvider = (provider) => {
+    if (provider === 'google') {
+      signInWithGoogle()
+        .then((res) => {
+          if (res?.user?.email) {
+            navigate('/');
+          }
+        })
+        .catch((err) => console.log(err));
+    }
+    if (provider === 'github') {
+      signInWithGithub()
+        .then((res) => {
+          if (res?.user?.displayName) {
+            navigate('/');
+          }
+        })
+        .catch((err) => console.log(err));
+    }
+  };
+
   return (
     <div className='flex justify-center items-center min-h-screen h-auto py-10 px-2 mx-auto w-full md:w-5/6 lg:w-2/6'>
       <Card className='w-full'>
@@ -71,8 +100,14 @@ const SignIn = () => {
           </p>
           <div className='border-t border-gray-300 text-center'></div>
           <div className='py-4 text-center flex justify-center items-center gap-5'>
-            <FcGoogle className='text-3xl cursor-pointer' />
-            <FaGithub className='text-3xl cursor-pointer' />
+            <FcGoogle
+              className='text-3xl cursor-pointer'
+              onClick={() => handleWithProvider('google')}
+            />
+            <FaGithub
+              className='text-3xl cursor-pointer'
+              onClick={() => handleWithProvider('github')}
+            />
           </div>
         </div>
       </Card>

@@ -2,10 +2,14 @@
 
 import { Button, Card, Label, TextInput } from 'flowbite-react';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import useAuth from '../hooks/useAuth';
+import toast from 'react-hot-toast';
 
 const SignUp = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
+  const { createUser, updateProfileInfo } = useAuth();
+  const navigate = useNavigate();
 
   const handleSignUp = (e) => {
     e.preventDefault();
@@ -14,23 +18,44 @@ const SignUp = () => {
     const password = e.target.password.value;
     const photoURL = e.target.photo.value;
 
+    const userData = {
+      displayName: name,
+      photoURL,
+    };
+
+    const toastID = toast.loading('User Creating...');
     if (email) {
       setFormData((prevData) => ({
         ...prevData,
         email,
       }));
-    }
-    if (password) {
+    } else if (password) {
       setFormData((prevData) => ({
         ...prevData,
         password,
       }));
     }
+    createUser(email, password)
+      .then((userCredential) => {
+        updateProfileInfo(userData)
+          .then((response) => {
+            console.log(response);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+        console.log({ displayName: name, photoURL });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
     e.target.name.value = '';
     e.target.email.value = '';
     e.target.password.value = '';
     e.target.photo.value = '';
+    navigate('/');
+    toast.success('User Create Successfully', { id: toastID });
   };
 
   return (
