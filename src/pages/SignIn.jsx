@@ -7,6 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
 import { FaGithub } from 'react-icons/fa';
 import useAuth from '../hooks/useAuth';
+import toast from 'react-hot-toast';
 
 const SignIn = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
@@ -18,6 +19,7 @@ const SignIn = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
 
+    const toastID = toast.loading('User Creating...');
     if (email) {
       setFormData((prevData) => ({
         ...prevData,
@@ -36,14 +38,17 @@ const SignIn = () => {
         console.log(error);
       });
     navigate('/');
+    toast.success('User Create Successfully', { id: toastID });
   };
 
   const handleWithProvider = (provider) => {
+    const toastID = toast.loading('User Creating...');
     if (provider === 'google') {
       signInWithGoogle()
         .then((res) => {
           if (res?.user?.email) {
             navigate('/');
+            toast.success('User Create Successfully', { id: toastID });
           }
         })
         .catch((err) => console.log(err));
@@ -53,6 +58,7 @@ const SignIn = () => {
         .then((res) => {
           if (res?.user?.displayName) {
             navigate('/');
+            toast.success('User Create Successfully', { id: toastID });
           }
         })
         .catch((err) => console.log(err));
