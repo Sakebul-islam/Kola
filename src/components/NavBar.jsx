@@ -1,28 +1,23 @@
 'use client';
 
-import { Avatar, Dropdown, Navbar } from 'flowbite-react';
+import {  Dropdown, Navbar } from 'flowbite-react';
 
 import kola from '../assets/images/logo.png';
 import { NavLink } from 'react-router-dom';
 import Manus from './Manus';
+import { FaRegUserCircle } from 'react-icons/fa';
 
 const NavBar = () => {
   return (
     <Navbar fluid rounded className='shadow-md'>
-      <NavLink to='/'>
+      <NavLink to='/' className='md:w-14 lg:w-auto'>
         <img src={kola} className='mr-3 h-6 sm:h-9' alt='Flowbite React Logo' />
       </NavLink>
       <div className='flex md:order-2'>
         <Dropdown
           arrowIcon={false}
           inline
-          label={
-            <Avatar
-              alt='User settings'
-              img='https://flowbite.com/docs/images/people/profile-picture-5.jpg'
-              rounded
-            />
-          }
+          label={<FaRegUserCircle className='text-3xl'/>}
         >
           <Dropdown.Header>
             <span className='block text-sm'>Bonnie Green</span>

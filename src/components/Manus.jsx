@@ -1,4 +1,5 @@
 import { Navbar } from 'flowbite-react';
+
 const Manus = () => {
   return (
     <Navbar.Collapse>
@@ -10,6 +11,7 @@ const Manus = () => {
 
       <Navbar.Link href='#'>Manage My Foods</Navbar.Link>
       <Navbar.Link href='#'>My Food Request</Navbar.Link>
+      <Navbar.Link href='#'>Login</Navbar.Link>
     </Navbar.Collapse>
   );
 };
