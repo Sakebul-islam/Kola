@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+::selection {
+  background-color: #a5ff1b;
+  color: #000;
+}
+
+img {
+  user-drag: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}

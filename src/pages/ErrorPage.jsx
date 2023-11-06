@@ -3,9 +3,11 @@ import { Link, useRouteError } from 'react-router-dom';
 import err404 from '../assets/images/404.svg';
 
 import { FcHome } from 'react-icons/fc';
+import { useEffect } from 'react';
 const ErrorPage = () => {
-  const error = useRouteError();
-  console.log(error);
+  useEffect(() => {
+    console.clear();
+  }, []);
 
   return (
     <div
