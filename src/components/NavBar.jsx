@@ -23,7 +23,9 @@ const NavBar = () => {
       </NavLink>
       <Manus droyer={droyer} handleDroyer={handleDroyer} />
       <div
-        className={`lg:hidden ${droyer ? 'translate-x-0' : '-translate-x-full'} absolute w-full h-full top-[60px] left-0 bg-neutral-100 opacity-50 z-[2]`}
+        className={`lg:hidden ${
+          droyer ? 'translate-x-0' : '-translate-x-full'
+        } absolute w-full h-full top-[60px] left-0 bg-neutral-100 opacity-50 z-[2]`}
         onClick={handleDroyer}
       ></div>
       <div className='flex justify-center items-center gap-4'>
