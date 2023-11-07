@@ -20,7 +20,7 @@ const FoodCard = ({ food }) => {
   } = food;
   return (
     <Card
-      className='w-full !rounded-none'
+      className='w-full !rounded-[0px]'
       imgAlt='Meaningful alt text for an image that is not purely decorative'
       imgSrc={foodImage}
       title={foodName}
@@ -59,7 +59,7 @@ const FoodCard = ({ food }) => {
         <span className='font-normal'>{additionalNotes}</span>
       </h3>
       <div className='flex justify-center items-center mt-4'>
-        <button className='w-full sm:w-4/5 md:w-4/12 lg:w-4/5 rounded-sm bg-lime-600 px-4 py-3 text-center text-sm font-medium text-white hover:bg-lime-500 focus:outline-none focus:ring-2 focus:ring-lime-300 dark:bg-lime-600 dark:hover:bg-lime-600 dark:focus:ring-lime-700 scale-100 active:scale-95 duration-200'>
+        <button className='w-full sm:w-4/5 md:w-4/12 lg:w-4/5 rounded-sm bg-lime-600 px-4 py-3 text-center text-sm font-medium text-white hover:bg-lime-500 focus:outline-none focus:ring-2 focus:ring-lime-300 dark:bg-lime-600 dark:hover:bg-lime-600 dark:focus:ring-lime-700 scale-100 hover:scale-95 active:scale-95 duration-200'>
           View Detail
         </button>
       </div>

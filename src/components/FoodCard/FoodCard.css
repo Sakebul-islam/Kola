@@ -1,9 +1,9 @@
 div [data-testid='flowbite-card-image'] {
-  border-radius:0 !important;
-  -webkit-border-radius:0 !important;
-  -moz-border-radius:0 !important;
-  -ms-border-radius:0 !important;
-  -o-border-radius:0 !important;
+  border-radius: 0 !important;
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  -ms-border-radius: 0 !important;
+  -o-border-radius: 0 !important;
 }
 
 div [data-testid='flowbite-card-image'] ~ div {

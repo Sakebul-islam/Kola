@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 
 import Root from '../Layout/Root';
+import PrivateRoute from './PrivateRoute';
 import ErrorPage from '../pages/ErrorPage';
 import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
@@ -16,7 +17,11 @@ const routes = createBrowserRouter([
       { index: true, element: <Home /> },
       {
         path: 'available-foods',
-        element: <AvailableFoods />,
+        element: (
+          <PrivateRoute>
+            <AvailableFoods />,
+          </PrivateRoute>
+        ),
       },
       {
         path: 'signin',

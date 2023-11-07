@@ -29,7 +29,7 @@ const FeaturedFoods = () => {
   );
 
   return (
-    <div className='my-14 p-4 py-14 bg-neutral-100'>
+    <div className='p-4 py-14 bg-neutral-100'>
       <h2 className='text-center font-bold text-4xl mb-10'>Featured Foods</h2>
       {isLoading ? (
         loader

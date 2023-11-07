@@ -2,7 +2,7 @@
 
 import { Button, Card, Label, TextInput } from 'flowbite-react';
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import { FcGoogle } from 'react-icons/fc';
 import { FaGithub } from 'react-icons/fa';
@@ -13,6 +13,7 @@ const SignIn = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const { signIn, signInWithGoogle, signInWithGithub } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleSignIn = (e) => {
     e.preventDefault();
@@ -33,12 +34,15 @@ const SignIn = () => {
       }));
     }
     signIn(email, password)
-      .then((res) => console.log(res))
-      .catch((error) => {
-        console.log(error);
+      .then((res) => {
+        if (res?.user?.email) {
+          navigate(`${location?.state ? location?.state : '/'}`);
+          toast.success('User Create Successfully', { id: toastID });
+        }
+      })
+      .catch((err) => {
+        toast.error(err.message, { id: toastID });
       });
-    navigate('/');
-    toast.success('User Create Successfully', { id: toastID });
   };
 
   const handleWithProvider = (provider) => {
@@ -47,21 +51,25 @@ const SignIn = () => {
       signInWithGoogle()
         .then((res) => {
           if (res?.user?.email) {
-            navigate('/');
+            navigate(`${location?.state ? location?.state : '/'}`);
             toast.success('User Create Successfully', { id: toastID });
           }
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          toast.error(err.message, { id: toastID });
+        });
     }
     if (provider === 'github') {
       signInWithGithub()
         .then((res) => {
           if (res?.user?.displayName) {
-            navigate('/');
+            navigate(`${location?.state ? location?.state : '/'}`);
             toast.success('User Create Successfully', { id: toastID });
           }
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          toast.error(err.message, { id: toastID });
+        });
     }
   };
 
