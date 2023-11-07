@@ -9,6 +9,7 @@ import slide5 from '../assets/images/slider/slide5.png';
 import slide6 from '../assets/images/slider/slide6.png';
 import slide7 from '../assets/images/slider/slide7.png';
 import slide8 from '../assets/images/slider/slide8.png';
+import slide9 from '../assets/images/slider/slide9.png';
 
 const Slider = () => {
   return (
@@ -38,6 +39,9 @@ const Slider = () => {
         </div>
         <div className='bg-[#ecc192] h-full w-full flex justify-center items-center'>
           <img src={slide8} className='w-2/4' alt='...' />
+        </div>
+        <div className='bg-[#427D9D] h-full w-full flex justify-center items-center'>
+          <img src={slide9} className='w-2/4' alt='...' />
         </div>
       </Carousel>
     </div>

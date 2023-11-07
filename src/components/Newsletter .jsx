@@ -23,7 +23,7 @@ const Newsletter = () => {
         <input
           type='text'
           placeholder='Your email address...'
-          className='border-2 w-full border-lime-500 rounded-full'
+          className='border-2 w-full border-lime-500 rounded-full px-4'
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />

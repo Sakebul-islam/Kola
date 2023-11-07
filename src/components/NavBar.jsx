@@ -17,15 +17,15 @@ const NavBar = () => {
   };
 
   return (
-    <Navbar
-      fluid
-      rounded
-      className='shadow-md overflow-hidden'
-    >
+    <Navbar fluid rounded className='shadow-md overflow-hidden'>
       <NavLink to='/' className='w-auto'>
         <img src={kola} className='mr-3 h-6 sm:h-9' alt='Flowbite React Logo' />
       </NavLink>
       <Manus droyer={droyer} handleDroyer={handleDroyer} />
+      <div
+        className={`lg:hidden ${droyer ? 'translate-x-0' : '-translate-x-full'} absolute w-full h-full top-[60px] left-0 bg-neutral-100 opacity-50 z-[2]`}
+        onClick={handleDroyer}
+      ></div>
       <div className='flex justify-center items-center gap-4'>
         <UserData />
         <div onClick={handleDroyer} className='lg:hidden'>
