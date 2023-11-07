@@ -5,6 +5,7 @@ import ErrorPage from '../pages/ErrorPage';
 import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
 import Home from '../pages/Home';
+import AvailableFoods from '../pages/AvailableFoods';
 
 const routes = createBrowserRouter([
   {
@@ -13,6 +14,10 @@ const routes = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <Home /> },
+      {
+        path: 'available-foods',
+        element: <AvailableFoods />,
+      },
       {
         path: 'signin',
         element: <SignIn />,
