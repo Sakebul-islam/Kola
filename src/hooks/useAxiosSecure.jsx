@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect } from 'react';
-import useAuth from '../hooks/useAuth';
+import useAuth from './useAuth';
 import { useNavigate } from 'react-router-dom';
 
 const axiosSecure = axios.create({
@@ -8,7 +8,7 @@ const axiosSecure = axios.create({
   withCredentials: true,
 });
 
-const useAxios = () => {
+const useAxiosSecure = () => {
   const navigate = useNavigate();
   const { logOut } = useAuth();
   useEffect(() => {
@@ -31,4 +31,4 @@ const useAxios = () => {
   return axiosSecure;
 };
 
-export default useAxios;
+export default useAxiosSecure;
