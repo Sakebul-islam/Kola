@@ -3,7 +3,7 @@
 import { Avatar, Modal } from 'flowbite-react';
 import { useEffect, useState } from 'react';
 
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { useParams } from 'react-router';
 import formatDate from '../utils/formatDate ';
@@ -45,9 +45,29 @@ const ViewDetails = () => {
     return `${year}-${month}-${day}`;
   };
 
+  const requestData = {
+    foodName: food?.foodName,
+    foodImage: food?.foodImage,
+    foodId: food?._id,
+    donatorEmail: food?.donatorEmail,
+    donatorName: food?.donatorName,
+    requestPersonEmail: user?.email,
+    currentDate,
+    pickupLocation: food?.pickupLocation,
+    expiredDateTime: food?.expiredDateTime,
+    additionalNotes,
+    donationMoney: Number(donationMoney),
+  };
+  const { mutate } = useMutation({
+    mutationKey: ['request'],
+    mutationFn: (request) => {
+      return axios.post('http://localhost:5000/api/v1/user/request', request);
+    },
+  });
+
   const handleRequest = () => {
     setOpenModal(false);
-    console.log(additionalNotes, donationMoney);
+    mutate(requestData);
   };
 
   const handleChangeNodes = (e) => {

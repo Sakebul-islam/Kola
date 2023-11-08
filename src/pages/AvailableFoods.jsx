@@ -47,8 +47,8 @@ const AvailableFoods = () => {
             value={sortOrder}
             onChange={(e) => setSortOrder(e.target.value)}
           >
-            <option value='desc'>New Foods</option>
-            <option value='asc'>Old Foods</option>
+            <option value='desc'>Expiry Date (After)</option>
+            <option value='asc'>Nearest Expiry Date</option>
           </select>
         </div>
         <div className='flex-[7]'>

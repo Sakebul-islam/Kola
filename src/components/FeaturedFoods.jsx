@@ -2,17 +2,19 @@ import axios from 'axios';
 import FoodCard from './FoodCard/FoodCard';
 
 import { useQuery } from '@tanstack/react-query';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 
 const FeaturedFoods = () => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+
   const getFoods = async () => {
     const res = await axios.get(`http://localhost:5000/api/v1/foods?limit=6`);
     return res;
   };
 
   const { data, isLoading } = useQuery({
-    queryKey: ['foods'],
+    queryKey: ['foods', pathname],
     queryFn: getFoods,
   });
 
@@ -37,7 +39,7 @@ const FeaturedFoods = () => {
         <div className='grid gap-6 grid-cols-1 lg:grid-cols-3 xl:grid-cols-3'>
           {isLoading
             ? loader
-            : foods.map((food) => <FoodCard key={food._id} food={food} />)}
+            : foods?.map((food) => <FoodCard key={food._id} food={food} />)}
         </div>
       )}
       <div className='flex justify-center items-center mt-12'>
