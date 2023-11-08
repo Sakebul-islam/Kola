@@ -245,7 +245,7 @@ const ViewDetails = () => {
                       name='additionalNotes'
                       id='additionalNotes'
                       className='w-full focus:border-lime-500 ring-lime-400 resize-none h-28'
-                      value={additionalNotes}
+                      value={food?.additionalNotes}
                       onChange={handleChangeNodes}
                     ></textarea>
                   </div>
