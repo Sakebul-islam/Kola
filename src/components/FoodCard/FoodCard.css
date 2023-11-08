@@ -1,11 +1,46 @@
-div [data-testid='flowbite-card-image'] {
+img[data-testid='flowbite-card-image'] {
   border-radius: 0 !important;
   -webkit-border-radius: 0 !important;
   -moz-border-radius: 0 !important;
   -ms-border-radius: 0 !important;
   -o-border-radius: 0 !important;
+  /* max-height: 191px; */
 }
 
-div [data-testid='flowbite-card-image'] ~ div {
+/* @media screen and (min-width: 347px) {
+  img[data-testid='flowbite-card-image'] {
+    max-height: 261px;
+  }
+} */
+@media screen and (min-width: 476px) {
+  img[data-testid='flowbite-card-image'] {
+    /* max-height: 490px; */
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  img[data-testid='flowbite-card-image'] {
+    /* max-height: 208.66px; */
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  img[data-testid='flowbite-card-image'] {
+    max-height: 248px;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  img[data-testid='flowbite-card-image'] {
+    max-height: 300px;
+  }
+}
+@media screen and (min-width: 1600px) {
+  img[data-testid='flowbite-card-image'] {
+    max-height: 400px;
+  }
+}
+
+img[data-testid='flowbite-card-image']~div {
   gap: 6px !important;
 }

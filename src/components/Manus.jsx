@@ -38,7 +38,7 @@ const Manus = ({ droyer, handleDroyer }) => {
       </li>
       <li className='block lg:inline-block'>
         <NavLink
-          to='/addfood'
+          to='/add-food'
           className={({ isActive }) =>
             `duration-200 lg:whitespace-pre block hover:bg-lime-500 hover:text-white px-2 py-1 rounded-sm ${
               isActive ? 'bg-lime-500 text-white hover:!text-black' : ''

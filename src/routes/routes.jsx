@@ -8,6 +8,7 @@ import SignUp from '../pages/SignUp';
 import Home from '../pages/Home';
 import AvailableFoods from '../pages/AvailableFoods';
 import ViewDetails from '../pages/ViewDetails';
+import AddFood from '../pages/AddFood';
 
 const routes = createBrowserRouter([
   {
@@ -29,6 +30,14 @@ const routes = createBrowserRouter([
         element: (
           <PrivateRoute>
             <ViewDetails />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'add-food',
+        element: (
+          <PrivateRoute>
+            <AddFood />
           </PrivateRoute>
         ),
       },
