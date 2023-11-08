@@ -1,13 +1,13 @@
-import { Link, useRouteError } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import err404 from '../assets/images/404.svg';
 
 import { FcHome } from 'react-icons/fc';
 import { useEffect } from 'react';
 const ErrorPage = () => {
-  useEffect(() => {
-    console.clear();
-  }, []);
+  // useEffect(() => {
+  //   console.clear();
+  // }, []);
 
   return (
     <div
