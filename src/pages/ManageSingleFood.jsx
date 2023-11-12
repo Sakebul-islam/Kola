@@ -1,21 +1,22 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import useAuth from '../hooks/useAuth';
-import axios from 'axios';
 import toast from 'react-hot-toast';
 import { useParams } from 'react-router';
 import { format } from 'date-fns';
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
+import useAxiosSecure from '../hooks/useAxiosSecure';
 
 const ManageSingleFood = () => {
   const { user } = useAuth();
+  const axios = useAxiosSecure();
   const { id: foodId } = useParams();
   const queryClient = useQueryClient();
   const [updateFoodId, setUpdateFoodId] = useState('');
 
   const getFoods = async () => {
     const res = await axios.get(
-      `http://localhost:5000/api/v1/user/request?userEmail=${user.email}&foodId=${foodId}`
+      `/api/v1/user/request?userEmail=${user.email}&foodId=${foodId}`
     );
     return res;
   };
@@ -30,10 +31,7 @@ const ManageSingleFood = () => {
   const { mutate } = useMutation({
     mutationKey: ['getFoodStatus'],
     mutationFn: async (updateStatus) => {
-      return axios.patch(
-        `http://localhost:5000/api/v1/user/request/${updateFoodId}`,
-        updateStatus
-      );
+      return axios.patch(`/api/v1/user/request/${updateFoodId}`, updateStatus);
     },
     onSuccess: () => {
       toast.success('Status Update Successfully');

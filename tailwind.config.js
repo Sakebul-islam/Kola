@@ -8,18 +8,7 @@ export default {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        orange1:
-          "url('orange1.png')",
-        orange2:
-          "url('orange2.png')",
-        orange3:
-          "url('orange3.png')",
-        apple1:
-          "url('apple1.png')",
-        apple2:
-          "url('apple2.png')",
-      },
+
     },
   },
   plugins: [require('flowbite/plugin')],

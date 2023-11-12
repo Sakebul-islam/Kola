@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import useAuth from './useAuth';
 import { useNavigate } from 'react-router-dom';
 
-const axiosSecure = axios.create({
+export const axiosSecure = axios.create({
   baseURL: 'http://localhost:5000',
   withCredentials: true,
 });
@@ -21,13 +21,13 @@ const useAxiosSecure = () => {
           console.log('LogOut the user : ');
           logOut()
             .then(() => {
-              navigate('/authentication/login');
+              navigate('/signin');
             })
             .catch((err) => console.log(err));
         }
       }
     );
-  }, []);
+  }, [logOut, navigate]);
   return axiosSecure;
 };
 

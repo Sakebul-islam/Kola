@@ -19,12 +19,9 @@ const AddFood = () => {
     const toastId = toast.loading('Food Adding...');
     const formData = new FormData(e.target);
     const formDataObject = Object.fromEntries(formData.entries());
-    const updatedExpiredDateTime = convertDateFormat(
-      formDataObject.expiredDateTime
-    );
     const updateFormDataObject = {
       ...formDataObject,
-      expiredDateTime: updatedExpiredDateTime,
+      expiredDateTime: formDataObject.expiredDateTime,
       foodStatus: 'available',
     };
     mutate(updateFormDataObject);

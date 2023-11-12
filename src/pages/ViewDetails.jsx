@@ -4,20 +4,22 @@ import { Avatar, Modal } from 'flowbite-react';
 import { useEffect, useState } from 'react';
 
 import { useMutation, useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 import { useParams } from 'react-router';
 import formatDate from '../utils/formatDate ';
 import useAuth from '../hooks/useAuth';
 import toast from 'react-hot-toast';
 import { Helmet } from 'react-helmet-async';
+import useAxiosSecure from '../hooks/useAxiosSecure';
+import { format, utcToZonedTime } from 'date-fns-tz';
 
 const ViewDetails = () => {
   const { user } = useAuth();
   const { id } = useParams();
+  const axios = useAxiosSecure();
   const [openModal, setOpenModal] = useState(false);
 
   const getFoods = async () => {
-    const res = await axios.get(`http://localhost:5000/api/v1/foods/${id}`);
+    const res = await axios.get(`/api/v1/foods/${id}`);
     return res;
   };
 
@@ -46,6 +48,11 @@ const ViewDetails = () => {
     return `${year}-${month}-${day}`;
   };
 
+  const currentTime = format(
+    utcToZonedTime(new Date(), 'Asia/Dhaka'),
+    "yyyy-MM-dd'T'HH:mm"
+  );
+
   const requestData = {
     foodName: food?.foodName,
     foodImage: food?.foodImage,
@@ -55,7 +62,11 @@ const ViewDetails = () => {
     requestPersonName: user?.displayName,
     requestPersonEmail: user?.email,
     requestPersonPhoto: user?.photoURL,
-    requestDate: new Date().toISOString().slice(0, 16),
+    requestDate: format(
+      utcToZonedTime(new Date(), 'Asia/Dhaka'),
+      'MM/dd/yyyy hh:mm a',
+      { timeZone: 'Asia/Dhaka' }
+    ),
     pickupLocation: food?.pickupLocation,
     expiredDateTime: food?.expiredDateTime,
     additionalNotes,
@@ -65,7 +76,7 @@ const ViewDetails = () => {
   const { mutate } = useMutation({
     mutationKey: ['request'],
     mutationFn: (request) => {
-      return axios.post('http://localhost:5000/api/v1/user/request', request);
+      return axios.post('/api/v1/user/request', request);
     },
   });
 
@@ -95,7 +106,7 @@ const ViewDetails = () => {
         </figure>
         <div className='w-full flex-1 flex flex-col gap-6 lg:gap-16'>
           <div className='space-y-2'>
-            <h2 className='text-lg md:text-3xl xl:text-4xl font-bold'>
+            <h2 className='text-lg md:text-3xl xl:text-4xl font-bold capitalize'>
               Food Name :&nbsp;
               <span className='font-medium'>{food?.foodName}</span>
             </h2>
@@ -217,7 +228,7 @@ const ViewDetails = () => {
                       <input
                         type='datetime-local'
                         id='datetime'
-                        value={new Date().toISOString().slice(0, 16)}
+                        value={currentTime}
                         readOnly
                       ></input>
                     </div>

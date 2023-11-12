@@ -1,4 +1,3 @@
-import axios from 'axios';
 import useAuth from '../hooks/useAuth';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import './ManageMyFood.css';
@@ -16,24 +15,28 @@ import { useEffect, useMemo, useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import useAxiosSecure from '../hooks/useAxiosSecure';
+import { format } from 'date-fns';
 
 const ManageMyFood = () => {
   const { user } = useAuth();
+  const axios = useAxiosSecure();
   const [foods, setFoods] = useState([]);
   const [delet, setDelet] = useState(false);
   const columnHelper = createColumnHelper();
   const queryClient = useQueryClient();
   const location = useLocation();
 
-  const url = `http://localhost:5000/api/v1/foods?userEmail=${user.email}`;
+  const url = `/api/v1/foods?userEmail=${user.email}`;
 
   useEffect(() => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        setFoods(data);
-      });
-  }, [url, delet]);
+    const fetchData = async () => {
+      const res = await axios.get(url);
+      setFoods(res?.data);
+      console.log(res);
+    };
+    fetchData();
+  }, [axios, url, delet]);
 
   const data = useMemo(() => foods, [foods]);
 
@@ -88,7 +91,9 @@ const ManageMyFood = () => {
       header: 'Exp DateTime',
       cell: (info) => (
         <span className='' title={info.getValue()}>
-          {info.getValue()}
+          {format(new Date(info.getValue()), 'MM/dd/yyyy hh:mm a', {
+            timeZone: 'Asia/Dhaka',
+          })}
         </span>
       ),
       footer: 'Exp DateTime',
@@ -182,7 +187,7 @@ const ManageMyFood = () => {
   const { mutate: deleteItem } = useMutation({
     mutationKey: ['deleteFood'],
     mutationFn: async (id) => {
-      return axios.delete(`http://localhost:5000/api/v1/foods/${id}`);
+      return axios.delete(`/api/v1/foods/${id}`);
     },
     onSuccess: () => {
       toast.success('Delete Successfully');

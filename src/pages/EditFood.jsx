@@ -1,11 +1,13 @@
 import { useLocation, useNavigate, useParams } from 'react-router';
 import useAuth from '../hooks/useAuth';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 import toast from 'react-hot-toast';
+import { Helmet } from 'react-helmet-async';
+import useAxiosSecure from '../hooks/useAxiosSecure';
 
 const EditFood = () => {
   const { user } = useAuth();
+  const axios = useAxiosSecure();
   const { id } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
@@ -32,7 +34,7 @@ const EditFood = () => {
   const { mutate } = useMutation({
     mutationKey: ['addFood'],
     mutationFn: (foodInfo) => {
-      return axios.put(`http://localhost:5000/api/v1/foods/${id}`, foodInfo);
+      return axios.put(`/api/v1/foods/${id}`, foodInfo);
     },
   });
   const handleAddFood = (e) => {
@@ -56,7 +58,6 @@ const EditFood = () => {
 
   return (
     <>
-      {' '}
       <Helmet>
         <title>Kσʅα | Edit Food </title>
       </Helmet>

@@ -32,7 +32,7 @@ const FoodCard = ({ food }) => {
       title={foodName}
     >
       <h5
-        className='text-2xl font-bold tracking-tight text-gray-900 dark:text-white truncate'
+        className='text-2xl font-bold tracking-tight text-gray-900 dark:text-white truncate capitalize'
         title={foodName}
       >
         {foodName}

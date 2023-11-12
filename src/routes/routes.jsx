@@ -23,11 +23,7 @@ const routes = createBrowserRouter([
       { index: true, element: <Home /> },
       {
         path: 'available-foods',
-        element: (
-          <PrivateRoute>
-            <AvailableFoods />,
-          </PrivateRoute>
-        ),
+        element: <AvailableFoods />,
       },
       {
         path: 'food/:id',
