@@ -15,16 +15,6 @@ const ViewDetails = () => {
   const { user } = useAuth();
   const { id } = useParams();
   const [openModal, setOpenModal] = useState(false);
-  const currentDate = new Intl.DateTimeFormat('en-US', {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-    second: 'numeric',
-    timeZoneName: 'short',
-  }).format(new Date());
 
   const getFoods = async () => {
     const res = await axios.get(`http://localhost:5000/api/v1/foods/${id}`);
@@ -224,13 +214,6 @@ const ViewDetails = () => {
                       <label className='' htmlFor='requestDate'>
                         Request Date
                       </label>
-                      {/* <input
-                      className='w-full focus:border-lime-500 ring-lime-400'
-                      type='date'
-                      id='requestDate'
-                      defaultValue={currentDate}
-                      readOnly
-                    /> */}
                       <input
                         type='datetime-local'
                         id='datetime'
