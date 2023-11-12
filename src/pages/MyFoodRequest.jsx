@@ -44,12 +44,18 @@ const MyFoodRequest = () => {
     }
     toast.error("Food already Delivered, Request can't be Cancelable");
   };
+  const loader = (
+    <div className='w-full h-[50vh] flex justify-center items-center'>
+      <div className='w-16 h-16 border-t-[6px] border-lime-500 border-solid rounded-full animate-spin'></div>
+    </div>
+  );
   return (
     <>
+      {isLoading ? loader :
+      <div className='p-4 sm:p-12 py-14 bg-neutral-100 sm:w-4/5 md:w-4/6 lg:w-2/4 mx-auto'>
       <Helmet>
         <title>Kσʅα | Manage Food Request</title>
       </Helmet>
-      <div className='p-4 sm:p-12 py-14 bg-neutral-100 sm:w-4/5 md:w-4/6 lg:w-2/4 mx-auto'>
         <h2 className='text-center font-bold text-4xl mb-10'>
           Update Food Status
         </h2>
@@ -114,12 +120,13 @@ const MyFoodRequest = () => {
               ))}
             </ul>
           </div>
+          
         ) : (
           <h3 className='text-3xl text-center font-bold text-lime-400'>
             No Request Found
           </h3>
         )}
-      </div>
+      </div>}
     </>
   );
 };
