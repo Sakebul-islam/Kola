@@ -37,9 +37,9 @@ const UserData = () => {
             {user?.email ? user?.email : 'user@email.com'}
           </span>
         </Dropdown.Header>
-        <Dropdown.Item>Dashboard</Dropdown.Item>
-        <Dropdown.Item>Settings</Dropdown.Item>
-        <Dropdown.Item>Earnings</Dropdown.Item>
+        <Dropdown.Item disabled>Dashboard</Dropdown.Item>
+        <Dropdown.Item disabled>Settings</Dropdown.Item>
+        <Dropdown.Item disabled>Earnings</Dropdown.Item>
         <Dropdown.Divider />
         <Dropdown.Item onClick={handleLogout}>
           {user?.displayName ? 'Sign out' : 'Sign In'}

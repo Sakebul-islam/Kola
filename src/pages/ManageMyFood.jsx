@@ -15,6 +15,7 @@ import {
 import { useEffect, useMemo, useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useLocation } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const ManageMyFood = () => {
   const { user } = useAuth();
@@ -192,6 +193,9 @@ const ManageMyFood = () => {
 
   const table = (
     <table>
+      <Helmet>
+        <title>Kσʅα | Manage My Food </title>
+      </Helmet>
       <thead>
         {tableInstance.getHeaderGroups().map((headerGroup) => (
           <tr key={headerGroup?.id}>
@@ -221,6 +225,9 @@ const ManageMyFood = () => {
   );
   return (
     <div className='px-4 overflow-scroll'>
+      <Helmet>
+        <title>Kσʅα | Manage My Food </title>
+      </Helmet>
       {data.length === 0 ? (
         <div className='text-center py-28 font-bold text-3xl'>
           No Data Found

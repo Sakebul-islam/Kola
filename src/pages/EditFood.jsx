@@ -55,136 +55,144 @@ const EditFood = () => {
   };
 
   return (
-    <div className='p-4 py-14 bg-neutral-100 sm:w-4/5 md:w-4/6 lg:w-2/4 mx-auto'>
-      <h2 className='text-center font-bold text-4xl mb-10'>Update Food Info</h2>
-      <form className='space-y-6' onSubmit={handleAddFood}>
-        <div className='flex flex-col w-full gap-1'>
-          <label className='' htmlFor='foodName'>
-            Food Name
-          </label>
-          <input
-            className='w-full focus:border-lime-500 ring-lime-400'
-            type='text'
-            id='foodName'
-            name='foodName'
-            defaultValue={food?.foodName}
-            required
-          />
-        </div>
-        <div className='flex flex-col w-full gap-1'>
-          <label className='' htmlFor='foodImage'>
-            Food Image
-          </label>
-          <input
-            className='w-full focus:border-lime-500 ring-lime-400'
-            type='text'
-            id='foodImage'
-            name='foodImage'
-            defaultValue={food?.foodImage}
-            required
-          />
-        </div>
-        <div className='flex flex-col w-full gap-1'>
-          <label className='' htmlFor='foodQuantity'>
-            Food Quantity (Only Number)
-          </label>
-          <input
-            className='w-full focus:border-lime-500 ring-lime-400'
-            type='number'
-            id='foodQuantity'
-            name='foodQuantity'
-            defaultValue={food?.foodQuantity}
-            required
-          />
-        </div>
-        <div className='flex flex-col w-full gap-1'>
-          <label className='' htmlFor='pickupLocation'>
-            Pickup Location
-          </label>
-          <input
-            className='w-full focus:border-lime-500 ring-lime-400'
-            type='text'
-            id='pickupLocation'
-            name='pickupLocation'
-            defaultValue={food?.pickupLocation}
-            required
-          />
-        </div>
-        <div className='flex flex-col w-full gap-1'>
-          <label className='' htmlFor='expiredDateTime'>
-            Expired Date
-          </label>
-          {isLoading ? (
-            ''
-          ) : (
+    <>
+      {' '}
+      <Helmet>
+        <title>Kσʅα | Edit Food </title>
+      </Helmet>
+      <div className='p-4 py-14 bg-neutral-100 sm:w-4/5 md:w-4/6 lg:w-2/4 mx-auto'>
+        <h2 className='text-center font-bold text-4xl mb-10'>
+          Update Food Info
+        </h2>
+        <form className='space-y-6' onSubmit={handleAddFood}>
+          <div className='flex flex-col w-full gap-1'>
+            <label className='' htmlFor='foodName'>
+              Food Name
+            </label>
             <input
               className='w-full focus:border-lime-500 ring-lime-400'
-              type='date'
-              id='expiredDateTime'
-              name='expiredDateTime'
-              defaultValue={formattedDate(food?.expiredDateTime)}
+              type='text'
+              id='foodName'
+              name='foodName'
+              defaultValue={food?.foodName}
+              required
+            />
+          </div>
+          <div className='flex flex-col w-full gap-1'>
+            <label className='' htmlFor='foodImage'>
+              Food Image
+            </label>
+            <input
+              className='w-full focus:border-lime-500 ring-lime-400'
+              type='text'
+              id='foodImage'
+              name='foodImage'
+              defaultValue={food?.foodImage}
+              required
+            />
+          </div>
+          <div className='flex flex-col w-full gap-1'>
+            <label className='' htmlFor='foodQuantity'>
+              Food Quantity (Only Number)
+            </label>
+            <input
+              className='w-full focus:border-lime-500 ring-lime-400'
+              type='number'
+              id='foodQuantity'
+              name='foodQuantity'
+              defaultValue={food?.foodQuantity}
+              required
+            />
+          </div>
+          <div className='flex flex-col w-full gap-1'>
+            <label className='' htmlFor='pickupLocation'>
+              Pickup Location
+            </label>
+            <input
+              className='w-full focus:border-lime-500 ring-lime-400'
+              type='text'
+              id='pickupLocation'
+              name='pickupLocation'
+              defaultValue={food?.pickupLocation}
+              required
+            />
+          </div>
+          <div className='flex flex-col w-full gap-1'>
+            <label className='' htmlFor='expiredDateTime'>
+              Expired Date
+            </label>
+            {isLoading ? (
+              ''
+            ) : (
+              <input
+                className='w-full focus:border-lime-500 ring-lime-400'
+                type='date'
+                id='expiredDateTime'
+                name='expiredDateTime'
+                defaultValue={formattedDate(food?.expiredDateTime)}
+                readOnly
+              />
+            )}
+          </div>
+          <div className='flex flex-col w-full gap-1'>
+            <label className='' htmlFor='additionalNotes'>
+              Additional Notes
+            </label>
+            <textarea
+              className='w-full focus-border-lime-500 ring-lime-400 resize-none h-28'
+              id='additionalNotes'
+              name='additionalNotes'
+              defaultValue={food?.additionalNotes}
+              required
+            ></textarea>
+          </div>
+          <div className='flex flex-col w-full gap-1'>
+            <label className='' htmlFor='donatorName'>
+              Donator Name
+            </label>
+            <input
+              className='w-full focus-border-lime-500 ring-lime-400'
+              type='text'
+              id='donatorName'
+              name='donatorName'
+              defaultValue={user?.displayName}
               readOnly
             />
-          )}
-        </div>
-        <div className='flex flex-col w-full gap-1'>
-          <label className='' htmlFor='additionalNotes'>
-            Additional Notes
-          </label>
-          <textarea
-            className='w-full focus-border-lime-500 ring-lime-400 resize-none h-28'
-            id='additionalNotes'
-            name='additionalNotes'
-            defaultValue={food?.additionalNotes}
-            required
-          ></textarea>
-        </div>
-        <div className='flex flex-col w-full gap-1'>
-          <label className='' htmlFor='donatorName'>
-            Donator Name
-          </label>
-          <input
-            className='w-full focus-border-lime-500 ring-lime-400'
-            type='text'
-            id='donatorName'
-            name='donatorName'
-            defaultValue={user?.displayName}
-            readOnly
-          />
-        </div>
-        <div className='flex flex-col w-full gap-1'>
-          <label className='' htmlFor='donatorImage'>
-            Donator Image
-          </label>
-          <input
-            className='w-full focus-border-lime-500 ring-lime-400'
-            type='text'
-            id='donatorImage'
-            name='donatorImage'
-            defaultValue={user?.photoURL}
-            readOnly
-          />
-        </div>
-        <div className='flex flex-col w-full gap-1'>
-          <label className='' htmlFor='donatorEmail'>
-            Donator Email
-          </label>
-          <input
-            className='w-full focus-border-lime-500 ring-lime-400'
-            type='text'
-            id='donatorEmail'
-            name='donatorEmail'
-            defaultValue={user?.email}
-            readOnly
-          />
-        </div>
-        <div>
-          <button className='mt-6 rounded-none border-2 border-lime-500 bg-duration-200 bg-lime-500 font-bold hover:bg-transparent text-white hover:text-lime-500 focus:ring-2 focus:ring-lime-300 p-3'>
-            Update Now
-          </button>
-        </div>
-      </form>
-    </div>
+          </div>
+          <div className='flex flex-col w-full gap-1'>
+            <label className='' htmlFor='donatorImage'>
+              Donator Image
+            </label>
+            <input
+              className='w-full focus-border-lime-500 ring-lime-400'
+              type='text'
+              id='donatorImage'
+              name='donatorImage'
+              defaultValue={user?.photoURL}
+              readOnly
+            />
+          </div>
+          <div className='flex flex-col w-full gap-1'>
+            <label className='' htmlFor='donatorEmail'>
+              Donator Email
+            </label>
+            <input
+              className='w-full focus-border-lime-500 ring-lime-400'
+              type='text'
+              id='donatorEmail'
+              name='donatorEmail'
+              defaultValue={user?.email}
+              readOnly
+            />
+          </div>
+          <div>
+            <button className='mt-6 rounded-none border-2 border-lime-500 bg-duration-200 bg-lime-500 font-bold hover:bg-transparent text-white hover:text-lime-500 focus:ring-2 focus:ring-lime-300 p-3'>
+              Update Now
+            </button>
+          </div>
+        </form>
+      </div>
+    </>
   );
 };
 

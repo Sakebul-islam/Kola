@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 
 const Manus = ({ droyer, handleDroyer }) => {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
   return (
     <ul
       className={`absolute gap-3 lg:flex lg:justify-end lg:items-center bg-neutral-200 lg:bg-transparent lg:static top-[60px] w-10/12 lg:w-min duration-100 h-full p-4 text-xl lg:gap z-10 ${
@@ -64,7 +64,7 @@ const Manus = ({ droyer, handleDroyer }) => {
       </li>
       <li className='block lg:inline-block'>
         <NavLink
-          to='myfoodrequest'
+          to='my-food-request'
           className={({ isActive }) =>
             `duration-200 lg:whitespace-pre block hover:bg-lime-500 hover:text-white px-2 py-1 rounded-sm ${
               isActive ? 'bg-lime-500 text-white hover:!text-black' : ''
@@ -75,22 +75,28 @@ const Manus = ({ droyer, handleDroyer }) => {
           My Food Request
         </NavLink>
       </li>
-      {user?.displayName ? (
+      {loading ? (
         ''
       ) : (
-        <li className='block lg:inline-block'>
-          <NavLink
-            to='/signin'
-            className={({ isActive }) =>
-              `duration-200 lg:whitespace-pre block hover:bg-lime-500 hover:text-white px-2 py-1 rounded-sm ${
-                isActive ? 'bg-lime-500 text-white hover:!text-black' : ''
-              }`
-            }
-            onClick={() => handleDroyer(!droyer)}
-          >
-            Login
-          </NavLink>
-        </li>
+        <>
+          {user?.displayName ? (
+            ''
+          ) : (
+            <li className='block lg:inline-block'>
+              <NavLink
+                to='/signin'
+                className={({ isActive }) =>
+                  `duration-200 lg:whitespace-pre block hover:bg-lime-500 hover:text-white px-2 py-1 rounded-sm ${
+                    isActive ? 'bg-lime-500 text-white hover:!text-black' : ''
+                  }`
+                }
+                onClick={() => handleDroyer(!droyer)}
+              >
+                Login
+              </NavLink>
+            </li>
+          )}
+        </>
       )}
     </ul>
   );

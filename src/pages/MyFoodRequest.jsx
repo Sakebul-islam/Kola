@@ -1,61 +1,53 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import useAuth from '../hooks/useAuth';
 import axios from 'axios';
-import toast from 'react-hot-toast';
-import { useParams } from 'react-router';
-import { format } from 'date-fns';
+import { DateTime } from 'luxon';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 import { Helmet } from 'react-helmet-async';
 
-const ManageSingleFood = () => {
+const MyFoodRequest = () => {
   const { user } = useAuth();
-  const { id: foodId } = useParams();
   const queryClient = useQueryClient();
-  const [updateFoodId, setUpdateFoodId] = useState('');
+  const [deleteFoodId, setDeleteFoodId] = useState('');
 
   const getFoods = async () => {
     const res = await axios.get(
-      `http://localhost:5000/api/v1/user/request?userEmail=${user.email}&foodId=${foodId}`
+      `http://localhost:5000/api/v1/user/request?userEmail=${user?.email}`
     );
     return res;
   };
-
   const { data, isLoading } = useQuery({
     queryKey: ['getFoodStatus'],
     queryFn: getFoods,
   });
-
   const requestedFood = data?.data;
 
   const { mutate } = useMutation({
     mutationKey: ['getFoodStatus'],
-    mutationFn: async (updateStatus) => {
-      return axios.patch(
-        `http://localhost:5000/api/v1/user/request/${updateFoodId}`,
-        updateStatus
+    mutationFn: async () => {
+      return axios.delete(
+        `http://localhost:5000/api/v1/user/request/${deleteFoodId}`
       );
     },
     onSuccess: () => {
-      toast.success('Status Update Successfully');
+      toast.success('Request Delete Successfully');
       queryClient.invalidateQueries({ queryKey: ['getFoodStatus'] });
     },
   });
+  console.log(requestedFood);
 
-  const handleUpdateFoodStatus = (foodInfo) => {
-    if (foodInfo && foodInfo.foodStatus === 'pending') {
-      setUpdateFoodId(foodInfo?._id);
-      mutate({ foodStatus: 'delivered' });
+  const handleRemoveRequest = (food) => {
+    if (food.foodStatus === 'pending') {
+      setDeleteFoodId(food?._id);
+      mutate();
     }
-    if (foodInfo && foodInfo.foodStatus === 'delivered') {
-      setUpdateFoodId(foodInfo?._id);
-      mutate({ foodStatus: 'pending' });
-    }
+    toast.error("Food already Delivered, Request can't be Cancelable");
   };
-
   return (
     <>
       <Helmet>
-        <title>Kσʅα | Manage Single Food </title>
+        <title>Kσʅα | Manage Food Request</title>
       </Helmet>
       <div className='p-4 sm:p-12 py-14 bg-neutral-100 sm:w-4/5 md:w-4/6 lg:w-2/4 mx-auto'>
         <h2 className='text-center font-bold text-4xl mb-10'>
@@ -66,26 +58,23 @@ const ManageSingleFood = () => {
             <ul className='grid grid-cols-1 gap-12'>
               {requestedFood?.map((food) => (
                 <div key={food?._id} className='space-y-4'>
-                  <li className='flex flex-col'>
-                    <div className='mx-auto'>
-                      <img
-                        src={food?.requestPersonPhoto}
-                        alt=''
-                        className='w-[200px] h-[200px]'
-                      />
-                    </div>
+                  <li className=''>
+                    <span className='inline-block min-w-[170px]'>
+                      Donar Name
+                    </span>
+                    :<span>&nbsp;{food?.donatorName}</span>
                   </li>
                   <li className=''>
                     <span className='inline-block min-w-[170px]'>
-                      Requester Name
+                      Pickup Location
                     </span>
-                    :<span>&nbsp;{food?.requestPersonName}</span>
+                    :<span>&nbsp;{food?.pickupLocation}</span>
                   </li>
                   <li className=''>
                     <span className='inline-block min-w-[170px]'>
-                      Requester Email
+                      Donation Amount
                     </span>
-                    :<span>&nbsp;{food?.requestPersonEmail}</span>
+                    :<span>&nbsp;${food?.donationMoney}</span>
                   </li>
                   <li className=''>
                     <span className='inline-block min-w-[170px]'>
@@ -94,10 +83,12 @@ const ManageSingleFood = () => {
                     :
                     <span>
                       &nbsp;
-                      {format(
-                        new Date(food?.requestDate),
-                        'MM/dd/yyyy hh:mm a'
-                      )}
+                      {DateTime.fromISO('2023-11-12T12:10', { zone: 'utc' })
+                        .setZone('Asia/Dhaka')
+                        .toLocaleString({
+                          ...DateTime.DATETIME_SHORT,
+                          hour12: true,
+                        })}
                     </span>
                   </li>
                   <li className=''>
@@ -114,9 +105,9 @@ const ManageSingleFood = () => {
                   <li className='text-center select-none'>
                     <button
                       className='mt-6 rounded-none border-2 border-lime-500 bg-duration-200 bg-lime-500 font-bold hover:bg-transparent text-white hover:text-lime-500 focus:ring-2 focus:ring-lime-300 p-3'
-                      onClick={() => handleUpdateFoodStatus(food)}
+                      onClick={() => handleRemoveRequest(food)}
                     >
-                      Update Status
+                      Cancel Request
                     </button>
                   </li>
                 </div>
@@ -125,7 +116,7 @@ const ManageSingleFood = () => {
           </div>
         ) : (
           <h3 className='text-3xl text-center font-bold text-lime-400'>
-            No Food Request
+            No Request Found
           </h3>
         )}
       </div>
@@ -133,4 +124,4 @@ const ManageSingleFood = () => {
   );
 };
 
-export default ManageSingleFood;
+export default MyFoodRequest;
