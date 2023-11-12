@@ -8,12 +8,22 @@ import axios from 'axios';
 import { useParams } from 'react-router';
 import formatDate from '../utils/formatDate ';
 import useAuth from '../hooks/useAuth';
+import toast from 'react-hot-toast';
 
 const ViewDetails = () => {
   const { user } = useAuth();
   const { id } = useParams();
   const [openModal, setOpenModal] = useState(false);
-  const currentDate = new Date().toISOString().split('T')[0];
+  const currentDate = new Intl.DateTimeFormat('en-US', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+    timeZoneName: 'short',
+  }).format(new Date());
 
   const getFoods = async () => {
     const res = await axios.get(`http://localhost:5000/api/v1/foods/${id}`);
@@ -51,11 +61,14 @@ const ViewDetails = () => {
     foodId: food?._id,
     donatorEmail: food?.donatorEmail,
     donatorName: food?.donatorName,
+    requestPersonName: user?.displayName,
     requestPersonEmail: user?.email,
-    currentDate,
+    requestPersonPhoto: user?.photoURL,
+    requestDate: new Date().toISOString().slice(0, 16),
     pickupLocation: food?.pickupLocation,
     expiredDateTime: food?.expiredDateTime,
     additionalNotes,
+    foodStatus: 'pending',
     donationMoney: Number(donationMoney),
   };
   const { mutate } = useMutation({
@@ -68,6 +81,7 @@ const ViewDetails = () => {
   const handleRequest = () => {
     setOpenModal(false);
     mutate(requestData);
+    toast.success('Request Successful');
   };
 
   const handleChangeNodes = (e) => {
@@ -203,13 +217,19 @@ const ViewDetails = () => {
                     <label className='' htmlFor='requestDate'>
                       Request Date
                     </label>
-                    <input
+                    {/* <input
                       className='w-full focus:border-lime-500 ring-lime-400'
                       type='date'
                       id='requestDate'
                       defaultValue={currentDate}
                       readOnly
-                    />
+                    /> */}
+                    <input
+                      type='datetime-local'
+                      id='datetime'
+                      value={new Date().toISOString().slice(0, 16)}
+                      readOnly
+                    ></input>
                   </div>
                   <div className='flex flex-col w-full gap-1'>
                     <label className='' htmlFor='pickupLocation'>

@@ -154,6 +154,13 @@ const ManageMyFood = () => {
           >
             <FiEdit className='w-full cursor-pointer' />
           </Link>
+          <Link
+            to={`/manage/${info.getValue()}`}
+            state={location.pathname}
+            className='text-sm p-0.5 rounded-md bg-gray-300'
+          >
+            Manage
+          </Link>
           <MdDelete
             className='w-full cursor-pointer'
             onClick={() => deleteItem(info.getValue())}
@@ -210,20 +217,6 @@ const ManageMyFood = () => {
           </tr>
         ))}
       </tbody>
-      <tfoot>
-        {tableInstance.getHeaderGroups().map((headerGroup) => (
-          <tr key={headerGroup?.id}>
-            {headerGroup.headers.map((header) => (
-              <th key={header?.id}>
-                {flexRender(
-                  header.column.columnDef.header,
-                  header.getContext()
-                )}
-              </th>
-            ))}
-          </tr>
-        ))}
-      </tfoot>
     </table>
   );
   return (

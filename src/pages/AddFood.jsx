@@ -27,6 +27,7 @@ const AddFood = () => {
       foodStatus: 'available',
     };
     mutate(updateFormDataObject);
+    console.log(updateFormDataObject);
     toast.success('Food add Successfully', { id: toastId });
     e.target.reset();
   };
