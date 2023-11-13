@@ -10,7 +10,7 @@
 
 //   const getFoods = async () => {
 //     const res =
-//       await axios.get(`http://localhost:5000/api/v1/foods?foodName=${searchQuery}&sortField=expiredDateTime&sortOrder=${sortOrder}
+//       await axios.get(`https://kola-server.vercel.app/api/v1/foods?foodName=${searchQuery}&sortField=expiredDateTime&sortOrder=${sortOrder}
 //     `);
 //     return res;
 //   };

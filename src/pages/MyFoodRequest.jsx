@@ -26,9 +26,7 @@ const MyFoodRequest = () => {
   const { mutate } = useMutation({
     mutationKey: ['getFoodStatus'],
     mutationFn: async () => {
-      return axios.delete(
-        `http://localhost:5000/api/v1/user/request/${deleteFoodId}`
-      );
+      return axios.delete(`/api/v1/user/request/${deleteFoodId}`);
     },
     onSuccess: () => {
       toast.success('Request Cancel Successfully');
