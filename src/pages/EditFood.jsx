@@ -13,7 +13,7 @@ const EditFood = () => {
   const navigate = useNavigate();
 
   const getFoods = async () => {
-    const res = await axios.get(`http://localhost:5000/api/v1/foods/${id}`);
+    const res = await axios.get(`/api/v1/foods/${id}`);
     return res;
   };
 

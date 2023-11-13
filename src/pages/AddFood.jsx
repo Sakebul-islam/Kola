@@ -1,16 +1,16 @@
 import { useMutation } from '@tanstack/react-query';
 import useAuth from '../hooks/useAuth';
-import axios from 'axios';
-import convertDateFormat from '../utils/convertDateFormat';
 import toast from 'react-hot-toast';
 import { Helmet } from 'react-helmet-async';
+import useAxiosSecure from '../hooks/useAxiosSecure';
 const AddFood = () => {
   const { user } = useAuth();
+  const axios = useAxiosSecure();
 
   const { mutate } = useMutation({
     mutationKey: ['addFood'],
     mutationFn: (foodInfo) => {
-      return axios.post('http://localhost:5000/api/v1/foods', foodInfo);
+      return axios.post('/api/v1/foods', foodInfo);
     },
   });
 

@@ -1,22 +1,22 @@
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 
 import FoodCard from '../components/FoodCard/FoodCard';
 import { useState } from 'react';
 import { ImSearch } from 'react-icons/im';
 import capitalize from '../utils/capitalize';
 import { Helmet } from 'react-helmet-async';
+import useAxiosSecure from '../hooks/useAxiosSecure';
 
 const AvailableFoods = () => {
+  const axios = useAxiosSecure();
   const [searchQuery, setSearchQuery] = useState('');
   const [sortOrder, setSortOrder] = useState('desc');
   const [search, setSearch] = useState(false);
 
   const getFoods = async () => {
-    const res =
-      await axios.get(`http://localhost:5000/api/v1/foods?foodName=${capitalize(
-        searchQuery
-      )}&sortField=expiredDateTime&sortOrder=${sortOrder}
+    const res = await axios.get(`/api/v1/foods?foodName=${capitalize(
+      searchQuery
+    )}&sortField=expiredDateTime&sortOrder=${sortOrder}
     `);
     return res;
   };

@@ -1,15 +1,16 @@
-import axios from 'axios';
 import FoodCard from './FoodCard/FoodCard';
 
 import { useQuery } from '@tanstack/react-query';
 import { useLocation, useNavigate } from 'react-router';
+import useAxiosSecure from '../hooks/useAxiosSecure';
 
 const FeaturedFoods = () => {
+  const axios = useAxiosSecure();
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
   const getFoods = async () => {
-    const res = await axios.get(`http://localhost:5000/api/v1/foods?limit=6`);
+    const res = await axios.get(`/api/v1/foods?limit=6`);
     return res;
   };
 
