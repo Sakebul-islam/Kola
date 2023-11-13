@@ -16,7 +16,7 @@ const ManageSingleFood = () => {
 
   const getFoods = async () => {
     const res = await axios.get(
-      `/api/v1/user/request?userEmail=${user.email}&foodId=${foodId}`
+      `/api/v1/user/request?userEmail=${user?.email}&foodId=${foodId}`
     );
     return res;
   };

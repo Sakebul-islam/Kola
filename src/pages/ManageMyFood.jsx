@@ -157,6 +157,7 @@ const ManageMyFood = () => {
           <Link
             to={`/manage-my-food/edit/${info.getValue()}`}
             state={location.pathname}
+            
           >
             <FiEdit className='w-full cursor-pointer' />
           </Link>
