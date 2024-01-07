@@ -3,6 +3,7 @@
 ## Backend Code : [KOLA](https://github.com/Sakebul-islam/kola-server-side.git)
 
 ## Project Overview
+
 This project aims to create a Community Food Sharing and Surplus Reduction Platform, leveraging technologies like React, Firebase, Node.js, and MongoDB. The platform connects those with excess food to individuals in need, reducing food waste and addressing hunger. Users can easily share, request, and manage food donations, fostering sustainability and community cooperation in the fight against food insecurity.
 
 ## Features List of this Project :
@@ -60,4 +61,5 @@ This project aims to create a Community Food Sharing and Surplus Reduction Platf
 - Tailwind CSS [a utility-first CSS framework that provides a set of utility classes for building and styling modern user interfaces]
 
 ## Website Screenshot
+
 ![KOLA!](https://raw.githubusercontent.com/Sakebul-islam/Kola/main/src/assets/images/kola-sakib.netlify.app_.png)
