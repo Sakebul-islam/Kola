@@ -60,8 +60,4 @@ This project aims to create a Community Food Sharing and Surplus Reduction Platf
 - Tailwind CSS [a utility-first CSS framework that provides a set of utility classes for building and styling modern user interfaces]
 
 ## Website Screenshot
-<<<<<<< HEAD
-
-=======
->>>>>>> b6031e427223d374df4025d9d1d32dc6ee70fe40
 ![KOLA!](https://raw.githubusercontent.com/Sakebul-islam/Kola/main/src/assets/images/kola-sakib.netlify.app_.png)
