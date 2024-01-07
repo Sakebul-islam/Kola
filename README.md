@@ -3,10 +3,6 @@
 ## Backend Code : [KOLA](https://github.com/Sakebul-islam/kola-server-side.git)
 
 ## Project Overview
-<<<<<<< HEAD
-
-=======
->>>>>>> b6031e427223d374df4025d9d1d32dc6ee70fe40
 This project aims to create a Community Food Sharing and Surplus Reduction Platform, leveraging technologies like React, Firebase, Node.js, and MongoDB. The platform connects those with excess food to individuals in need, reducing food waste and addressing hunger. Users can easily share, request, and manage food donations, fostering sustainability and community cooperation in the fight against food insecurity.
 
 ## Features List of this Project :
