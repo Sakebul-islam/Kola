@@ -62,4 +62,4 @@ This project aims to create a Community Food Sharing and Surplus Reduction Platf
 
 ## Website Screenshot
 
-![KOLA!](https://raw.githubusercontent.com/Sakebul-islam/Kola/main/src/assets/images/kola-sakib.netlify.app_.png)
+![KOLA!](https://raw.githubusercontent.com/Sakebul-islam/Kola/main/src/assets/images/kola-sakib.netlify.app_2.png)
